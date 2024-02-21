@@ -17,10 +17,10 @@ begin
 	process(clk) is
 	begin
 		if rising_edge(clk) then
-			if(load='1') then 
-				output <= input;
-			elsif(reset='1') then
+		if(reset='1') then
 				output <= "00000000";
+		elsif(load='1') then 
+				output <= input;
 			end if;
 		end if;
 	end process;
