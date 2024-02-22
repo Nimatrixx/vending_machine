@@ -8,7 +8,8 @@ entity vending_machine is
 		coin5_sensor, coin10_sensor : in std_logic;
 		finish : in std_logic;
 		publish_ticket0, publish_ticket1, publish_ticket2 : out std_logic;
-		return_coin5, return_coin10 : out std_logic
+		return_coin5, return_coin10 : out std_logic;
+		balance_not_enough : out std_logic
 		);
 end vending_machine;
 
@@ -92,6 +93,8 @@ begin
 				publish_ticket0 <= '0';
 				publish_ticket1 <= '0';
 				publish_ticket2 <= '0';
+				
+				balance_not_enough <= '0';
 
 				if(finish = '1') then
 					n_state <= RETURN_COIN;
@@ -121,7 +124,10 @@ begin
 					else
 						n_state <= INIT;
 					end if;
-					
+				
+				else
+					balance_not_enough <= '1';
+					n_state <= INIT;
 				end if;
 				
 			when RETURN_COIN =>
