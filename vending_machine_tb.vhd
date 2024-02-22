@@ -20,7 +20,8 @@ ARCHITECTURE behavior OF vending_machine_tb IS
          publish_ticket1 : OUT  std_logic;
          publish_ticket2 : OUT  std_logic;
          return_coin5 : OUT  std_logic;
-         return_coin10 : OUT  std_logic
+         return_coin10 : OUT  std_logic;
+			balance_not_enough : OUT std_logic
         );
     END COMPONENT;
     
@@ -41,6 +42,7 @@ ARCHITECTURE behavior OF vending_machine_tb IS
    signal publish_ticket2 : std_logic;
    signal return_coin5 : std_logic;
    signal return_coin10 : std_logic;
+	signal balance_not_enough : std_logic;
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -61,7 +63,8 @@ BEGIN
           publish_ticket1 => publish_ticket1,
           publish_ticket2 => publish_ticket2,
           return_coin5 => return_coin5,
-          return_coin10 => return_coin10
+          return_coin10 => return_coin10,
+			 balance_not_enough => balance_not_enough
         );
 
    -- Clock process definitions
@@ -98,7 +101,7 @@ BEGIN
 		'1' after 700 ns,
 		'0' after 710 ns,
 		'1' after 750 ns,
-		'0' after 760 ns;
+		'0' after 760 ns,
 		'1' after 780 ns,
 		'0' after 790 ns,
 		'1' after 800 ns,
